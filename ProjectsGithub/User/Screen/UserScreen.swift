@@ -14,13 +14,26 @@ class UserScreen: UIView {
     text.translatesAutoresizingMaskIntoConstraints = false
     text.textColor = .white
     text.font = UIFont.boldSystemFont(ofSize: 20)
-    text.text = "User"
+    text.text = "User Github"
     return text
+  }()
+  
+  lazy var userTextField: UITextField = {
+    let tf = UITextField()
+    tf.translatesAutoresizingMaskIntoConstraints = false
+    tf.keyboardType = .default
+    tf.autocorrectionType = .no
+    tf.backgroundColor = .white
+    tf.borderStyle = .roundedRect
+    tf.placeholder = "user name"
+
+    return tf
   }()
   
   override init(frame: CGRect) {
     super .init(frame: frame)
     self.addSubview(self.userLabel)
+    self.addSubview(self.userTextField)
     self.setUpConstraints()
   }
   
@@ -32,7 +45,12 @@ class UserScreen: UIView {
   private func setUpConstraints() {
     NSLayoutConstraint.activate([
       self.userLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-      self.userLabel.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 80)
+      self.userLabel.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 80),
+      
+      self.userTextField.topAnchor.constraint(equalTo: self.userLabel.bottomAnchor, constant: 20),
+      self.userTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+      self.userTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+      self.userTextField.heightAnchor.constraint(equalToConstant: 45)
     ])
   }
 
