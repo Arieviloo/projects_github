@@ -30,10 +30,23 @@ class UserScreen: UIView {
     return tf
   }()
   
+  lazy var confirmButton: UIButton = {
+    let btn = UIButton()
+    btn.translatesAutoresizingMaskIntoConstraints = false
+    btn.setTitle("Click", for: .normal)
+    btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+    btn.setTitleColor(.white, for: .normal)
+    btn.clipsToBounds = true
+    btn.layer.cornerRadius = 7.5
+    btn.backgroundColor = .purple
+    return btn
+  }()
+  
   override init(frame: CGRect) {
     super .init(frame: frame)
     self.addSubview(self.userLabel)
     self.addSubview(self.userTextField)
+    self.addSubview(self.confirmButton)
     self.setUpConstraints()
   }
   
@@ -50,7 +63,12 @@ class UserScreen: UIView {
       self.userTextField.topAnchor.constraint(equalTo: self.userLabel.bottomAnchor, constant: 20),
       self.userTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
       self.userTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-      self.userTextField.heightAnchor.constraint(equalToConstant: 45)
+      self.userTextField.heightAnchor.constraint(equalToConstant: 45),
+      
+      self.confirmButton.topAnchor.constraint(equalTo: self.userTextField.bottomAnchor, constant: 20),
+      self.confirmButton.leadingAnchor.constraint(equalTo: self.userTextField.leadingAnchor),
+      self.confirmButton.trailingAnchor.constraint(equalTo: self.userTextField.trailingAnchor),
+      self.confirmButton.heightAnchor.constraint(equalToConstant: 50)
     ])
   }
 
